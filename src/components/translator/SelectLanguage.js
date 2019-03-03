@@ -16,8 +16,9 @@ class SelectLanguage extends React.Component {
         {
           this.props.languages.map( (language) =>
             <FormControlLabel
-              control={<Switch checked={language === this.props.choosen ? true : false} value={language} color="primary" onChange={this.handleChange} />}
-              label={language} />
+              control={<Switch checked={language === this.props.chosen ? true : false} value={language} color="primary" onChange={this.handleChange} />}
+              label={language}
+              key={`${language}-${this.props.type}`} />
           )
         }
       </FormGroup>

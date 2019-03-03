@@ -12,13 +12,15 @@ class InputLanguage extends Component {
   render() {
     return (
       <Fragment>
-        <Typography variant="overline">
+        <Typography variant="button">
           Type here to translate your text ...
         </Typography>
         <TextField
           fullWidth
           autoFocus={true}
           // label="Text"
+          rows={4}
+          rowsMax={100}
           multiline
           margin="normal"
           onChange={this.handleChange}

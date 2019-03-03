@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
@@ -8,6 +8,8 @@ import InputLanguague from './InputLanguage';
 import Grid from '@material-ui/core/Grid';
 import OutputLanguage from './OutputLanguage';
 import SelectLanguage from './SelectLanguage';
+import UploadContainer from './UploadContainer';
+
 
 const styles = theme => ({
   root: {
@@ -42,9 +44,26 @@ class TranslationContainer extends Component {
   }
 
   render() {
+    let view;
+    if (this.props.view === 'Text') {
+      view =
+        <Fragment>
+          <Grid item xs={12} sm={6} className={this.classes.GridItem}>
+            <InputLanguague changeInput={this.props.changeInput} />
+          </Grid>
+          <Grid item xs={12} sm={6} className={classNames(this.classes.GridItem, this.classes.verticalLine)}>
+            <OutputLanguage text={this.props.text} />
+          </Grid>
+        </Fragment>
+    } else {
+      view =
+        <Grid item xs={12} sm={12} className={this.classes.GridItem}>
+          <UploadContainer />
+        </Grid>
+    }
     return (
       <div className={this.classes.root}>
-        <Paper>
+        <Paper style={{margin: 20}}>
           <Grid container>
             <Grid item xs={12}>
               <Grid container>
@@ -52,23 +71,20 @@ class TranslationContainer extends Component {
                   <SelectLanguage
                     changeLang={this.changeInputLang}
                     languages={this.props.languages}
-                    choosen={this.props.choosen.inputLang} />
+                    chosen={this.props.chosen.inputLang}
+                    type='in' />
                 </Grid>
                 <Grid item xs={12} sm={6} className={this.classes.GridItem}>
                 <SelectLanguage
                   changeLang={this.changeOutputLang}
                   languages={this.props.languages}
-                  choosen={this.props.choosen.outputLang} />
+                  chosen={this.props.chosen.outputLang}
+                  type='out' />
                 </Grid>
               </Grid>
             <Divider />
             </Grid>
-            <Grid item xs={12} sm={6} className={this.classes.GridItem}>
-              <InputLanguague changeInput={this.props.changeInput} />
-            </Grid>
-            <Grid item xs={12} sm={6}className={classNames(this.classes.GridItem, this.classes.verticalLine)}>
-              <OutputLanguage text={this.props.text} />
-            </Grid>
+            {view}
           </Grid>
         </Paper>
       </div>

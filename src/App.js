@@ -4,13 +4,17 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Header from './components/layouts/Header';
 import Footer from './components/layouts/Footer';
 import TranslationContainer from './components/translator/TranslationContainer';
+import UploadContainer from './components/translator/UploadContainer';
+import NavButton from './components/translator/NavButton';
+
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      view: 'Text',
       input: '',
-      choosen: {
+      chosen: {
         inputLang: '',
         outputLang: '',
       },
@@ -23,15 +27,19 @@ class App extends Component {
   }
 
   changeInputLang = (inputLang) => {
-    let choosen = {...this.state.choosen}
-    choosen.inputLang = inputLang;
-    this.setState({choosen})
+    let chosen = {...this.state.chosen}
+    chosen.inputLang = inputLang;
+    this.setState({chosen})
   }
 
   changeOutputLang = (outputLang) => {
-    let choosen = {...this.state.choosen}
-    choosen.outputLang = outputLang;
-    this.setState({choosen})
+    let chosen = {...this.state.chosen}
+    chosen.outputLang = outputLang;
+    this.setState({chosen})
+  }
+
+  changeView = (view) => {
+    this.setState({view})
   }
 
   render() {
@@ -39,13 +47,16 @@ class App extends Component {
       <div className="App">
         <CssBaseline />
         <Header />
+        <NavButton changeView={this.changeView} />
         <TranslationContainer
           changeInputLang={this.changeInputLang}
           changeOutputLang={this.changeOutputLang}
           languages={this.state.languages}
-          choosen={this.state.choosen}
+          chosen={this.state.chosen}
           changeInput={this.handleChangeInput}
-          text={this.state.input} />
+          text={this.state.input}
+          view={this.state.view}
+          />
       </div>
     );
   }

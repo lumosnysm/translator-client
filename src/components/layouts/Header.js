@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -17,22 +17,28 @@ const styles = {
   },
 };
 
-function Header(props) {
-  const { classes } = props;
-  return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar variant="dense">
-          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" color="inherit">
-            Translator
-          </Typography>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
+class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.classes = this.props.classes;
+  }
+
+  render() {
+    return (
+      <div className={this.classes.root}>
+        <AppBar position="static">
+          <Toolbar variant="dense">
+            <IconButton className={this.classes.menuButton} color="inherit" aria-label="Menu" >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" color="inherit">
+              Translator
+            </Typography>
+          </Toolbar>
+        </AppBar>
+      </div>
+    );
+  }
 }
 
 Header.propTypes = {

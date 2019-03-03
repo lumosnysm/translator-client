@@ -7,13 +7,15 @@ class OutputLanguage extends Component {
   render() {
     return (
       <Fragment>
-        <Typography variant="overline">
+        <Typography variant="button">
           Translation
         </Typography>
         <TextField
           fullWidth
           multiline
           disabled
+          rows={4}
+          rowsMax={100}
           margin="normal"
           value={this.props.text}
         />
