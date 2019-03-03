@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import TextField from '@material-ui/core/TextField';
 
 class OutputLanguage extends Component {
   render() {
@@ -9,8 +10,13 @@ class OutputLanguage extends Component {
         <Typography variant="overline">
           Translation
         </Typography>
-        <Typography variant="body2" gutterBottom>
-        </Typography>
+        <TextField
+          fullWidth
+          multiline
+          disabled
+          margin="normal"
+          value={this.props.text}
+        />
       </Fragment>
     );
   }

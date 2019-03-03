@@ -30,11 +30,15 @@ class TranslationContainer extends Component {
   }
 
   changeInputLang = (inputLang) => {
-    this.props.handleChangeInputLang(inputLang);
+    this.props.changeInputLang(inputLang);
   }
 
   changeOutputLang = (outputLang) => {
-    this.props.handleChangeOutputLang(outputLang);
+    this.props.changeOutputLang(outputLang);
+  }
+
+  changeInput = (input) => {
+    this.props.changeInput(input);
   }
 
   render() {
@@ -60,10 +64,10 @@ class TranslationContainer extends Component {
             <Divider />
             </Grid>
             <Grid item xs={12} sm={6} className={this.classes.GridItem}>
-              <InputLanguague />
+              <InputLanguague changeInput={this.props.changeInput} />
             </Grid>
             <Grid item xs={12} sm={6}className={classNames(this.classes.GridItem, this.classes.verticalLine)}>
-              <OutputLanguage />
+              <OutputLanguage text={this.props.text} />
             </Grid>
           </Grid>
         </Paper>

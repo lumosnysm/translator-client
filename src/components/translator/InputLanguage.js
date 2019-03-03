@@ -5,6 +5,10 @@ import Typography from '@material-ui/core/Typography';
 
 
 class InputLanguage extends Component {
+  handleChange = (e) => {
+    this.props.changeInput(e.target.value);
+  }
+
   render() {
     return (
       <Fragment>
@@ -14,9 +18,10 @@ class InputLanguage extends Component {
         <TextField
           fullWidth
           autoFocus={true}
-          label="Text"
+          // label="Text"
           multiline
           margin="normal"
+          onChange={this.handleChange}
         />
       </Fragment>
     );

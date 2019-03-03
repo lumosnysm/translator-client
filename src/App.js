@@ -9,6 +9,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      input: '',
       choosen: {
         inputLang: '',
         outputLang: '',
@@ -17,13 +18,17 @@ class App extends Component {
     }
   }
 
-  handleChangeInputLang = (inputLang) => {
+  handleChangeInput = (input) => {
+    this.setState({input})
+  }
+
+  changeInputLang = (inputLang) => {
     let choosen = {...this.state.choosen}
     choosen.inputLang = inputLang;
     this.setState({choosen})
   }
 
-  handleChangeOutputLang = (outputLang) => {
+  changeOutputLang = (outputLang) => {
     let choosen = {...this.state.choosen}
     choosen.outputLang = outputLang;
     this.setState({choosen})
@@ -35,10 +40,12 @@ class App extends Component {
         <CssBaseline />
         <Header />
         <TranslationContainer
-          handleChangeInputLang={this.handleChangeInputLang}
-          handleChangeOutputLang={this.handleChangeOutputLang}
+          changeInputLang={this.changeInputLang}
+          changeOutputLang={this.changeOutputLang}
           languages={this.state.languages}
-          choosen={this.state.choosen} />
+          choosen={this.state.choosen}
+          changeInput={this.handleChangeInput}
+          text={this.state.input} />
       </div>
     );
   }
