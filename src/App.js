@@ -1,25 +1,44 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import 'typeface-roboto';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Header from './components/layouts/Header';
+import Footer from './components/layouts/Footer';
+import TranslationContainer from './components/translator/TranslationContainer';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      choosen: {
+        inputLang: '',
+        outputLang: '',
+      },
+      languages: ["English", "Japanese", "Vietnamese"],
+    }
+  }
+
+  handleChangeInputLang = (inputLang) => {
+    let choosen = {...this.state.choosen}
+    choosen.inputLang = inputLang;
+    this.setState({choosen})
+  }
+
+  handleChangeOutputLang = (outputLang) => {
+    let choosen = {...this.state.choosen}
+    choosen.outputLang = outputLang;
+    this.setState({choosen})
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <CssBaseline />
+        <Header />
+        <TranslationContainer
+          handleChangeInputLang={this.handleChangeInputLang}
+          handleChangeOutputLang={this.handleChangeOutputLang}
+          languages={this.state.languages}
+          choosen={this.state.choosen} />
       </div>
     );
   }
