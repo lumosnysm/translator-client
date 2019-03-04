@@ -10,7 +10,6 @@ import OutputLanguage from './OutputLanguage';
 import SelectLanguage from './SelectLanguage';
 import UploadContainer from './UploadContainer';
 
-
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -67,14 +66,14 @@ class TranslationContainer extends Component {
           <Grid container>
             <Grid item xs={12}>
               <Grid container>
-                <Grid item xs={12} sm={6} className={this.classes.GridItem}>
+                <Grid item xs={12} sm={6} >
                   <SelectLanguage
                     changeLang={this.changeInputLang}
                     languages={this.props.languages}
                     chosen={this.props.chosen.inputLang}
                     type='in' />
                 </Grid>
-                <Grid item xs={12} sm={6} className={this.classes.GridItem}>
+                <Grid item xs={12} sm={6} >
                 <SelectLanguage
                   changeLang={this.changeOutputLang}
                   languages={this.props.languages}

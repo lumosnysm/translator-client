@@ -14,7 +14,7 @@ class Language extends Component {
           <Switch
             checked={this.props.value == this.props.choosen ? true : false}
             value={this.props.value}
-            color="primary"
+            color='primary'
             onChange={this.handleChange} />
         }
         label={this.props.value} />

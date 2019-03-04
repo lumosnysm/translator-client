@@ -46,30 +46,30 @@ class UploadContainer extends Component {
   render() {
     return (
       <div className={this.classes.root}>
-        <Typography variant="h5" component="h3">
+        <Typography variant='h5' component='h3'>
           Choose a document.
         </Typography>
         <br/>
-        <Typography component="p">
+        <Typography component='p'>
           {this.state.chosen === '' ? 'No file chosen' : this.state.chosen}
         </Typography>
         <br/>
         <form action=''>
           <input
-            accept="text/*"
+            accept='text/*'
             multiple
-            id="contained-button-file"
+            id='contained-button-file'
             className={this.classes.input}
-            type="file"
+            type='file'
             onChange={this.handleChange}
           />
-          <label htmlFor="contained-button-file">
-            <Button variant="contained" component="span" className={this.classes.button}>
+          <label htmlFor='contained-button-file'>
+            <Button variant='contained' component='span' className={this.classes.button}>
               Browse your computer
             </Button>
           </label>
           { this.state.chosen !== '' &&
-            <Button type="submit" variant="contained" color="primary">
+            <Button type='submit' variant='contained' color='primary'>
               Submit
             </Button>
           }
