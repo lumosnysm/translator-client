@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Icon from '@material-ui/core/Icon';
 
 const styles = theme => ({
   root: {
@@ -65,11 +66,13 @@ class UploadContainer extends Component {
           />
           <label htmlFor='contained-button-file'>
             <Button variant='contained' component='span' className={this.classes.button}>
+              <Icon>attachment</Icon>
               Browse your computer
             </Button>
           </label>
           { this.state.chosen !== '' &&
             <Button type='submit' variant='contained' color='primary'>
+              <Icon>cloud_upload</Icon>
               Submit
             </Button>
           }
