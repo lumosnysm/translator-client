@@ -9,6 +9,8 @@ import Grid from '@material-ui/core/Grid';
 import OutputLanguage from './OutputLanguage';
 import SelectLanguage from './SelectLanguage';
 import UploadContainer from './UploadContainer';
+import IconButton from '@material-ui/core/IconButton';
+import { Icon } from '@material-ui/core';
 
 const styles = theme => ({
   root: {
@@ -38,8 +40,8 @@ class TranslationContainer extends Component {
     this.props.changeOutputLang(outputLang);
   }
 
-  changeInput = (input) => {
-    this.props.changeInput(input);
+  handleClick = () => {
+    this.props.swapLang()
   }
 
   render() {
@@ -66,18 +68,23 @@ class TranslationContainer extends Component {
           <Grid container>
             <Grid item xs={12}>
               <Grid container>
-                <Grid item xs={12} sm={6} >
+                <Grid item xs={12} sm={5}>
                   <SelectLanguage
                     changeLang={this.changeInputLang}
                     languages={this.props.languages}
-                    chosen={this.props.chosen.inputLang}
+                    value={this.props.value.input}
                     type='in' />
                 </Grid>
-                <Grid item xs={12} sm={6} >
+                <Grid item xs={2} sm={2} style={{textAlign: 'center'}}>
+                  <IconButton  onClick={this.handleClick}>
+                    <Icon>swap_horiz</Icon>
+                  </IconButton>
+                </Grid>
+                <Grid item xs={12} sm={5} >
                 <SelectLanguage
                   changeLang={this.changeOutputLang}
                   languages={this.props.languages}
-                  chosen={this.props.chosen.outputLang}
+                  value={this.props.value.output}
                   type='out' />
                 </Grid>
               </Grid>

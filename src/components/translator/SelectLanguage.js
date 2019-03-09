@@ -18,17 +18,10 @@ class SelectLanguage extends React.Component {
   constructor(props) {
     super(props);
     this.classes = this.props.classes;
-    this.state = {
-      value: this.props.languages.indexOf(this.props.chosen),
-    }
   }
 
   handleChange = (e) => {
     this.props.changeLang(e.target.textContent);
-    let value = this.props.languages.indexOf(e.target.textContent);
-    this.setState({
-      value: value,
-    });
   }
 
 
@@ -36,7 +29,7 @@ class SelectLanguage extends React.Component {
     return (
         <Fragment>
           <Tabs
-            value={this.state.value}
+            value={this.props.value}
             variant='scrollable'
             scrollButtons='auto'
             style={{borderBottom: '1px solid #e8e8e8',}}

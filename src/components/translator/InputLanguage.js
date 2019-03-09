@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 class InputLanguage extends Component {
   handleChange = (e) => {
     this.props.changeInput(e.target.value);
+    console.log(e.target.value)
   }
 
   render() {

@@ -21,13 +21,18 @@ class NavButton extends Component {
   }
 
   handleClick = (e) => {
-    this.props.changeView(e.target.textContent)
+    if(e.target.textContent.match('ext') != null) {
+      this.props.changeView('Text');
+    } else {
+      this.props.changeView('Document');
+    }
+    console.log("++++++++++++")
   }
 
   render() {
     return (
       <div style={{margin: 20}}>
-        <Button variant='contained' value='Text' color='primary' className={this.classes.button} onClick={this.handleClick}>
+        <Button variant='contained' color='primary' className={this.classes.button} onClick={this.handleClick}>
           <Icon>text_fields</Icon>
           Text
         </Button>
