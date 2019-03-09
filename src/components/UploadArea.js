@@ -29,7 +29,7 @@ const styles = theme => ({
 });
 
 
-class UploadContainer extends Component {
+class UploadArea extends Component {
   constructor(props) {
     super(props);
     this.classes = this.props.classes;
@@ -83,8 +83,8 @@ class UploadContainer extends Component {
 }
 
 
-UploadContainer.propTypes = {
+UploadArea.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(UploadContainer);
+export default withStyles(styles)(UploadArea);

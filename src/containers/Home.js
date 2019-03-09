@@ -9,8 +9,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import TranslationContainer from './TranslationContainer';
-import NavButton from './NavButton';
+import TranslationArea from '../components/TranslationArea';
+import NavButton from '../components/NavButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
@@ -73,12 +73,23 @@ const styles = theme => ({
   },
 });
 
-class PersistentDrawerLeft extends React.Component {
+
+
+class Home extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       open: false,
+      screen: 'Text',
+      textInput: '',
+      inputLang: '',
+      outputLang: '',
+      languages: ["English", "Japanese", "Vietnamese"],
+      langValues: {
+        input: -1,
+        output: -1,
+      },
     };
   }
 
@@ -89,6 +100,48 @@ class PersistentDrawerLeft extends React.Component {
   handleDrawerClose = () => {
     this.setState({ open: false });
   };
+
+
+  changeTextInput = (textInput) => {
+    this.setState({textInput})
+  }
+
+  changeInputLang = (inputLang) => {
+    this.setState({
+      inputLang,
+      langValues: {
+        input: this.state.languages.indexOf(inputLang),
+        output: this.state.langValues.output
+      }
+    })
+  }
+
+  changeOutputLang = (outputLang) => {
+    this.setState({
+      outputLang,
+      langValues: {
+        input: this.state.langValues.input,
+        output: this.state.languages.indexOf(outputLang)
+      }
+    })
+  }
+
+  changeScreen= (screen) => {
+    this.setState({screen})
+  }
+
+  swapLang = () => {
+    let inputLang = this.state.inputLang
+    let outputLang = this.state.outputLang
+    this.setState({
+      inputLang: outputLang,
+      outputLang: inputLang,
+      langValues: {
+        output: this.state.languages.indexOf(inputLang),
+        input: this.state.languages.indexOf(outputLang)
+      }
+    })
+  }
 
   render() {
     const { classes, theme } = this.props;
@@ -138,17 +191,18 @@ class PersistentDrawerLeft extends React.Component {
           })}
         >
            <div className={classes.drawerHeader} />
-          <NavButton changeView={this.props.changeView}/>
-          <TranslationContainer
-            changeInputLang={this.props.changeInputLang}
-            changeOutputLang={this.props.changeOutputLang}
-            languages={this.props.languages}
-            chosen={this.props.chosen}
-            changeInput={this.props.changeInput}
-            text={this.props.input}
-            view={this.props.view}
-            swapLang={this.props.swapLang}
-            value={this.props.value}
+          <NavButton changeScreen={this.changeScreen}/>
+          <TranslationArea
+            changeInputLang={this.changeInputLang}
+            changeOutputLang={this.changeOutputLang}
+            changeTextInput={this.changeTextInput}
+            languages={this.state.languages}
+            inputLang={this.state.inputLang}
+            textInput={this.state.textInput}
+            screen={this.state.screen}
+            swapLang={this.swapLang}
+            langValues={this.state.langValues}
+            text={this.state.textInput}
             />
         </main>
       </div>
@@ -156,9 +210,9 @@ class PersistentDrawerLeft extends React.Component {
   }
 }
 
-PersistentDrawerLeft.propTypes = {
+Home.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(PersistentDrawerLeft);
+export default withStyles(styles, { withTheme: true })(Home);
