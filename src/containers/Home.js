@@ -13,8 +13,9 @@ import TranslationArea from '../components/TranslationArea';
 import NavButton from '../components/NavButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import BottomNav from './BottomNav';
 
-const drawerWidth = 240;
+const drawerWidth = 400;
 
 const styles = theme => ({
   root: {
@@ -160,7 +161,7 @@ class Home extends React.Component {
             <IconButton
               color="inherit"
               aria-label="Open drawer"
-              onClick={this.handleDrawerOpen}
+              // onClick={this.handleDrawerOpen}
               className={classNames(classes.menuButton, open && classes.hide)}
             >
               <MenuIcon />
@@ -204,6 +205,7 @@ class Home extends React.Component {
             langValues={this.state.langValues}
             text={this.state.textInput}
             />
+            <BottomNav openSide={this.handleDrawerOpen}/>
         </main>
       </div>
     );
